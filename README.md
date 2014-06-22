@@ -1,7 +1,8 @@
 cpm-arc-ball
 ============
 
-[![Build Status](https://travis-ci.org/iauns/cpm-arc-ball.png)](https://travis-ci.org/iauns/cpm-arc-ball)
+[![Build
+Status](https://travis-ci.org/CIBC-Internal/cpm-arc-ball.png)](https://travis-ci.org/CIBC-Internal/cpm-arc-ball)
 
 Implementation of Ken Shoemake's arcball transform with a few additions.
 
