@@ -12,7 +12,7 @@
 namespace CPM_ARC_BALL_NS {
 
 /// A reimplementation of Ken Shoemake's arcball camera. SCIRun 4's camera
-/// system is based off of Ken's code. The Code appears in Graphics Gems 4, 
+/// system is based off of Ken's code. The Code appears in Graphics Gems 4,
 /// III.1.
 /// Unless specified otherwise, all calculations and variables stored in this
 /// class are relative to the target coordinate system (TCS) for which there is
@@ -25,8 +25,8 @@ namespace CPM_ARC_BALL_NS {
 class ArcBall
 {
 public:
-  /// \param center         Center of the arcball in TCS (screen coordinates if 
-  ///                       screenToTCS = identity). Generally this will 
+  /// \param center         Center of the arcball in TCS (screen coordinates if
+  ///                       screenToTCS = identity). Generally this will
   ///                       always be (0,0,0). But you may move the center
   ///                       in and out of the screen plane to various effect.
   /// \param radius         Radius in TCS. For screen coordinates, a good
@@ -36,7 +36,7 @@ public:
   ArcBall(const glm::vec3& center, glm::float_t radius,
           const glm::mat4& screenToTCS = glm::mat4());
   virtual ~ArcBall();
-  
+
   /// Initiate an arc ball drag given the mouse click in screen coordinates.
   /// \param mouseScreenCoords  Mouse screen coordinates.
   void beginDrag(const glm::vec2& mouseScreenCoords);
@@ -45,8 +45,11 @@ public:
   /// \param mouseScreenCoords  Mouse screen coordinates.
   void drag(const glm::vec2& mouseScreenCoords);
 
+  /// Sets the camera to a specific location and up
+  void setLocationOnSphere(glm::vec3 location, glm::vec3 up);
+
   /// Retrieves the current transformation in TCS.
-  /// Obtains full transformation of object in question. If the arc ball is 
+  /// Obtains full transformation of object in question. If the arc ball is
   /// being used to control camera rotation, then this will contain all
   /// concatenated camera transformations. The current state of the camera
   /// is stored in the quaternions mQDown and mQNow. mMatNow is calculated
@@ -69,7 +72,7 @@ private:
                                 ///< Essentially QDrag * QDown (QDown is a applied first, just
                                 ///< as in matrix multiplication).
   glm::quat     mQDown;         ///< State of the rotation since mouse down.
-  glm::quat     mQDrag;         ///< Dragged transform. Knows nothing of any prior 
+  glm::quat     mQDrag;         ///< Dragged transform. Knows nothing of any prior
                                 ///< transformations.
 
   glm::vec3     mVNow;          ///< Most current TCS position of mouse (during drag).
@@ -83,6 +86,6 @@ private:
   glm::mat4     mScreenToTCS;
 };
 
-} // namespace CPM_ARC_BALL_NS 
+} // namespace CPM_ARC_BALL_NS
 
 #endif

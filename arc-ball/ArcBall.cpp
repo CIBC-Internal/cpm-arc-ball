@@ -72,7 +72,7 @@ void ArcBall::drag(const glm::vec2& msc)
   mVSphereTo  = mouseOnSphere(mVNow);
 
   // Construct a quaternion from two points on the unit sphere.
-  mQDrag = quatFromUnitSphere(mVSphereFrom, mVSphereTo); 
+  mQDrag = quatFromUnitSphere(mVSphereFrom, mVSphereTo);
   mQNow = mQDrag * mQDown;
 
   // Perform complex conjugate
@@ -82,6 +82,12 @@ void ArcBall::drag(const glm::vec2& msc)
   q.z = -q.z;
   q.w =  q.w;
   mMatNow = glm::mat4_cast(q);
+}
+
+//------------------------------------------------------------------------------
+void ArcBall::setLocationOnSphere(glm::vec3 location, glm::vec3 up)
+{
+    mMatNow = glm::lookAt(location, glm::vec3(0.0f), up);;
 }
 
 //------------------------------------------------------------------------------
