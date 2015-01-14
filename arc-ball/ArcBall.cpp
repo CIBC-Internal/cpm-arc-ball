@@ -87,7 +87,14 @@ void ArcBall::drag(const glm::vec2& msc)
 //------------------------------------------------------------------------------
 void ArcBall::setLocationOnSphere(glm::vec3 location, glm::vec3 up)
 {
-    mMatNow = glm::lookAt(location, glm::vec3(0.0f), up);;
+  mMatNow = glm::lookAt(location, glm::vec3(0.0f), up);
+  glm::quat q = glm::quat_cast(mMatNow);
+  q.x = -q.x;
+  q.y = -q.y;
+  q.z = -q.z;
+  q.w = q.w;
+  mQNow = q;
+
 }
 
 //------------------------------------------------------------------------------
